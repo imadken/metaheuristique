@@ -232,7 +232,40 @@ public  class Node {
 		    
 		    //return 0;
 	   }
+    public  int heuristique3() {//heuristic that counts each queen's conflicts
+    	
+		 int i=0;
+		 
+		 int h=0;
+		 
+		  
+
+	    	while((i<queens.length) && (queens[i]!= -1 ) ) {
+	    	
+	    	int j=0;	
+	    		
+	        while ((j<queens.length) && (queens[j]!=-1)  ) {
+	        	
+	        	if(j!=i) {
+	        		
+	        		
+	            if (queens[i] == queens[j] ) {
+	        	
+	                h++;
+	                
+	               // System.out.println("conflict between line : "+i+" col:"+queens[i]+" and line "+j+" col "+queens[j]);
+	                
+	            }
+	        	}
+	            j++;
+	        }
+	        
+	        i++;
+	    }
+	    	
+	    	return h;
+	   }
     
-    
+
    
 }

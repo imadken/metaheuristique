@@ -159,12 +159,13 @@ public class partition_dfs {
             //System.out.println("\n");
            // System.out.println(temp.finalsolution());
 
-            if(temp.finalsolution() && partition_dfs.verification(temp.sol)) {
+            if(temp.finalsolution() && partition_dfs.verification(temp.sol)&& (temp.evaluation()==0)) {
                 //System.out.println("******");
             	
             	first=1;
             	
             	solutions.add(temp);
+            	
             	
                 if (temp.evaluation() < min) {
                     min = temp.evaluation();
@@ -173,6 +174,8 @@ public class partition_dfs {
                    // nbr_sol++;
                     
                 }
+                break;
+                
             }
             else if (!temp.finalsolution()){
                // System.out.println("++++++++");
@@ -230,14 +233,28 @@ public class partition_dfs {
        // optimal.get_solution();
         
         //afficher la difference minimale
-        System.out.println("\n\nEvaluation , la difference minimale est: ");
-        System.out.println(optimal.evaluation());
+        //System.out.println("\n\nEvaluation , la difference minimale est: ");
+        //System.out.println(optimal.evaluation());
+        
+     
+       if(solutions.size()==0) System.out.print("pas de solution");
+        
+        for(int i=0;i<solutions.size();i++) {
+ 	   
+ 	   System.out.print("\n-  ");
+ 	   
+ 	   solutions.get(i).get_solution();
+ 	   
+ 	   System.out.print("\n  ");
+    
+    }
+     
         
         
         
         
         
-       System.out.println("\n\ntoutes les solutions: "+solutions.size());
+      // System.out.println("\n\ntoutes les solutions: "+solutions.size());
         
        /*for(int i=0;i<solutions.size();i++) {
     	   
@@ -254,8 +271,8 @@ public class partition_dfs {
 
      int heuristic() {
     	
-    	int s1=0;
-    	int s2=0;
+    	int s1=0;//somme de la liste 1
+    	int s2=0;//somme de la liste 2
     	
     	for(int i=0;i<this.sol.length;i++) {
     		
@@ -267,8 +284,10 @@ public class partition_dfs {
     	
     	
     	
-    	return somme_cible - Math.abs(s1-s2);}
-     
+    	return somme_cible - Math.abs(s1-s2);
+    	//return  Math.abs(s1-s2);
+    	
+     }
      
 
     public void A_star(partition_dfs InitNoeud) {
@@ -294,8 +313,8 @@ public class partition_dfs {
         int first_sol=0;
         int first=0;
         int nbr_sol=0;
-        int exp=0;
-        int gen=0;
+       // int exp=0;
+        //int gen=0;
         
         long start,end ;//pour calculer le temps
         
@@ -311,14 +330,14 @@ public class partition_dfs {
         	
             temp = OUVERT.remove(0);
             
-            exp++;
+           // exp++;
             
             //temp.get_solution();
            // FERMER.add(temp);
             //System.out.println("\n");
            // System.out.println(temp.finalsolution());
 
-            if(temp.finalsolution() && partition_dfs.verification(temp.sol)) {
+            if(temp.finalsolution() && partition_dfs.verification(temp.sol) && (temp.evaluation()==0)) {
                 //System.out.println("******");
             	
             	first=1;
@@ -332,6 +351,9 @@ public class partition_dfs {
                    // nbr_sol++;
                     
                 }
+                break;
+                
+                
             }
             else if (!temp.finalsolution()){
                // System.out.println("++++++++");
@@ -340,7 +362,7 @@ public class partition_dfs {
                 
             	temp.devchild_A_star(OUVERT);
             	
-            gen+=2;
+           // gen+=2;
             }
 
             //sort
@@ -383,17 +405,10 @@ public class partition_dfs {
         System.out.println("\ntemps de calcule : "+((end-start))+" ms");
         
         
-        //afficher l'instanciation
-       // System.out.println("\ninstanciation : ");
-        //optimal.get_instanciation();
-        
-        //afficher la solution
-       // System.out.println("\n\nSolution optimal obtenue par le DFS : ");
-       // optimal.get_solution();
         
         //afficher la difference minimale
-        System.out.println("\n\nEvaluation , la difference minimale est: ");
-        System.out.println(optimal.evaluation());
+      //  System.out.println("\n\nEvaluation , la difference minimale est: ");
+        //System.out.println(optimal.evaluation());
         
         
         
@@ -401,15 +416,7 @@ public class partition_dfs {
         
        System.out.println("\n\ntoutes les solutions: "+solutions.size());
         
-       /*for(int i=0;i<solutions.size();i++) {
-    	   
-    	   System.out.print("\n-  ");
-    	   
-    	   solutions.get(i).get_solution();
-    	   
-    	   System.out.print("\n  ");
-       
-       }*/
+     
         
     }
 
@@ -544,15 +551,15 @@ public class partition_dfs {
     	//int [] l= {484, 114, 205, 288, 506, 503, 201, 127, 410};
     	//int [] l= {23, 31,  29,  44,  53,  38,  63, 85, 89, 82};
     	//int [] l= {771, 121, 281, 854, 885, 734,  486, 1003, 83, 62};
-    	int [] l= {70, 73, 77, 80, 82, 87, 90, 94, 98, 106, 110, 113, 115, 118, 120};
+    	//int [] l= {70, 73, 77, 80, 82, 87, 90, 94, 98, 106, 110, 113, 115, 118, 120};
     	//int [] l= {382745, 799601, 909247, 729069, 467902,  44328,  34610, 698150, 823460, 903959, 853665, 551830, 610856, 670702, 488960, 951111, 323046, 446298, 931161,  31385, 496951, 264724, 224916, 169684};
-    			
+    	int [] l= {70, 73, 77, 80, 82, 87, 90, 94, 98, 106, 110, 113, 115, 118};		
     	partition_dfs test = new partition_dfs(l);
     	//partition_dfs testt = new partition_dfs(t);
     	//System.out.print(testt.heuristic());
     	
     	
-        test.DFS(test);
+       test.DFS(test);
         
       System.out.println("\n\n--------------\n");
       

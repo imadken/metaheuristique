@@ -1,13 +1,18 @@
 package projet;
 
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Collections;
+import java.util.ArrayList;
+//import java.util.Comparator;
 import java.util.List;
-import java.util.Queue;
 
-public class BFS_n_reines {
-	
-	
+
+
+
+//*************************************possible moves heuristic **********************************
+
+
+public class A_star_3 {
 	
 	 public static int[] solve(int n) {
 	    	
@@ -17,36 +22,41 @@ public class BFS_n_reines {
 	    	
 	        int[] solution = new int[n];
 	        
-	        Queue<Node> queue = new LinkedList<>();
+	        ArrayList<Node> queue = new ArrayList<Node>();
 	        
-	        queue.offer(new Node(n,0));
+	        queue.add(new Node(n,0));
 
 	        while (!queue.isEmpty()) {
 	        	
 	        	nbr_nodes_exp++;
 	        	
-	        	Node state = queue.poll();
+	        	Node state = queue.remove(0);
 	            
-	        	//if (state.isComplete() && (state.heuristique1()==0)) {
-	        	if (state.isComplete() && (state.isValid())) {
-	            	
+	        	//System.out.println(state.get_f());
+	        	
+	            if (state.isComplete() && (state.isValid())) {
+	        	//if (state.isComplete()) {
 	                //solutions.add(state.queens);
 	            	solution= (state.queens);
+	            	//System.out.println(state.get_f());
 	            	break;
 	            } else  {
 	            	
-	            	//if((!state.isComplete()) && (state.heuristique1()==0)) {
-	            	if((!state.isComplete())) {
+	            	if((!state.isComplete()) ) {
+	            		
 	                List<Node> nextNodes = state.get_children();
 	                for (Node nextNode : nextNodes) {
 	                	
-	                	
 	                	nbr_nodes_gen++;
-	                    queue.offer(nextNode);
-	                    
-	                }
+	                	
+	                	nextNode.set_f(nextNode.heuristique3());
+	                	
+	                    queue.add(nextNode);
+	               }
 	                }
 	            }
+	          //sort descendant  
+	          Collections.sort(queue,Node.heuristics_sort);
 	        }
 	        
 	        System.out.println("nombre des noeuds generes: " +nbr_nodes_gen); 
@@ -55,27 +65,37 @@ public class BFS_n_reines {
 	        return solution;
 	    
 	   }
+	 
+	 
+	 
+	 
+	 
+	 
 
 	    public static void main(String[] args) {
 	        int n = 6;
 	        long start,end;
 	        
-	        System.out.println("bfs\n"); 
+	        System.out.println("a* 3 \n"); 
+	       /*int[] l= {1,-1,-1,-1};
+	        
+	        Node test=new Node(4,0,l);
+	        
+	        System.out.println(test.heuristique2()); */
+	        
 	        start =System.currentTimeMillis();
 	        
-	        int[] solution = BFS_n_reines.solve(n);
+	        int[] solution = A_star_3.solve(n);
 	        
 	        end =System.currentTimeMillis();
 	        
 	        System.out.println("temps de calcul " +(end-start)/1000F+" (s)\n"); 
 	        
 	        
-	        //for (int[] solution : solutions) {
+	       
 	            System.out.println("solution:  "+Arrays.toString(solution));
-	        //}
-	       // System.out.println("Total solutions: " + solutions.size());
 	            
-	            
+	       
 	          
 	    }
 }

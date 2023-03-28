@@ -102,42 +102,12 @@ public class DFS_n_reines {
            
     }
 }
-/*
- * dfs
- * nombre des noeuds generes: 15330
-nombre des noeuds explores: 15316
+/*dfs 11
 
-temps de calcul 0.016 (s)
+nombre des noeuds generes: 1981694645
+nombre des noeuds explores: 1981694591
 
-solution:  [4, 2, 0, 5, 3, 1]
--------
-bfs
+temps de calcul 626.582 (s)
 
-nombre des noeuds generes: 55986
-nombre des noeuds explores: 22092
-
-temps de calcul 0.025 (s)
-
-solution:  [1, 3, 5, 0, 2, 4]
----------
-a* 2 
-
-nombre des noeuds generes: 53970
-nombre des noeuds explores: 21666
-
-temps de calcul 2.303 (s)
-
-solution:  [1, 3, 5, 0, 2, 4]
-
-a* 
-
-nombre des noeuds generes: 894
-nombre des noeuds explores: 150
-
-temps de calcul 0.007 (s)
-
-solution:  [1, 3, 5, 0, 2, 4]
-
-
-
+solution:  [10, 8, 6, 4, 2, 0, 9, 7, 5, 3, 1]
 */
