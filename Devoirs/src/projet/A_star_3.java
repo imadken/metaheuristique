@@ -27,7 +27,7 @@ public class A_star_3 {
 	        int[] solution = new int[n];
 	        
 	        ArrayList<Node> queue = new ArrayList<Node>();
-	       // PriorityQueue<Node> queue = new PriorityQueue<Node>( Node.heuristics_sort);
+	       
 	        queue.add(new Node(n,0));
 
 	        while (!queue.isEmpty()) {
@@ -36,13 +36,12 @@ public class A_star_3 {
 	        	
 	        	Node state = queue.remove(0);
 	            
-	        	//System.out.println(state.get_f());
+	        	
 	        	
 	            if (state.isComplete() && (state.isValid())) {
-	        	//if (state.isComplete()) {
-	                //solutions.add(state.queens);
+	        	
 	            	solution= (state.queens);
-	            	//System.out.println(state.get_f());
+	            
 	            	break;
 	            } else  {
 	            	

@@ -15,7 +15,7 @@ public  class Node {
     public int f;       //fonction d'evaluation
 
     
-    //pour l'etat initial
+    //Constructeur pour l'etat initial
     public Node(int n,int h) {
         queens = new int[n];
         Arrays.fill(queens, -1);
@@ -23,16 +23,7 @@ public  class Node {
         this.f=h;
     }
     
-   /* public Node(int n,int h,int[] l) {
-        queens = new int[n];
-       // Arrays.fill(queens, -1);
-        queens=l;
-        nextRow = 0;
-        this.f=h;
-    }*/
-
-    
-    //pour tout les etats en cours de development
+    //Constructeur pour tout les etats en cours de development
     
     public Node(Node s,int h) {
         queens = Arrays.copyOf(s.queens, s.queens.length);
@@ -40,9 +31,8 @@ public  class Node {
         this.f=h;
     }
     
-    //fonction d'evaluation cad ,est ce que un etat finale est valide ou non
+    //fonction d'evaluation c-a-d ,est ce que un etat finale est valide ou non
     public boolean isValid() {
-    	
     	
     	for (int i = 0; i < queens.length-1; i++) {
     	
@@ -58,22 +48,6 @@ public  class Node {
     	return true;
     }
     
-    
-    
-    
-    
-    
-    
-   /* public boolean Valid_move(int col,int line ) {
-    	
-        for (int i = 0; i < line; i++) {
-            if (queens[i] == col || queens[i] - i == col - line || queens[i] + i == col + line) {
-        	//if (queens[i] == col ) {
-                return false;
-            }
-        }
-        return true;
-    }*/
     
      
      public boolean Valid_move(int col,int line ,int stop ) {
@@ -93,13 +67,12 @@ public  class Node {
     	
         List<Node> nextNodes = new ArrayList<>();
         for (int col = 0; col < queens.length; col++) {
-        	
-            //if (Valid_move(col)) {
+
                 Node nextNode = new Node(this,0);
                 nextNode.queens[nextRow] = col;
                 nextNode.nextRow = nextRow + 1;
                 nextNodes.add(nextNode);
-           // }
+           
         }
         return nextNodes;
     }
@@ -118,9 +91,7 @@ public  class Node {
     }
     
     
-    
-    
-    //as cendant
+    // comparateur ascendant 
     public static Comparator<Node> heuristics_sort = new Comparator<Node>() {
 		 
         // Method
@@ -129,11 +100,9 @@ public  class Node {
             int f1 = s1.f;
             int f2 = s2.f;
  
-            // For ascending order
+         
             return f1 - f2;
  
-            // For descending order
-           // return f2-f1;
         }
     };
     
@@ -145,11 +114,7 @@ public  class Node {
  
             int f1 = s1.f;
             int f2 = s2.f;
- 
-            // For ascending order
-           // return f1 - f2;
- 
-            // For descending order
+
            return f2-f1;
         }
     };
@@ -158,11 +123,8 @@ public  class Node {
     public  int heuristique1() {//heuristic that counts each queen's conflicts
     	
 		 int i=0;
-		 
 		 int h=0;
-		 
-		  
-
+	
 	    	while((i<queens.length) && (queens[i]!= -1 ) ) {
 	    	
 	    	int j=0;	
@@ -171,29 +133,24 @@ public  class Node {
 	        	
 	        	if(j!=i) {
 	        		
-	        		
 	            if (queens[i] == queens[j] || queens[i] - i == queens[j] - j || queens[i] + i == queens[j] + j) {
+	        
+	                h++;      
+	            }}
 	        	
-	                h++;
-	                
-	               // System.out.println("conflict between line : "+i+" col:"+queens[i]+" and line "+j+" col "+queens[j]);
-	                
-	            }
-	        	}
 	            j++;
 	        }
 	        
 	        i++;
 	    }
-	    	
-	    	return h;
+	    return h;
 	   }
     
     public  int heuristique2() {//heuristic that counts possible valid moves
     	
 		 int i=0;
 		 
-		 int queens_left=0;	
+		 //int queens_left=0;	
 		 
 		 int h=0;
 		 
@@ -201,45 +158,33 @@ public  class Node {
 		    
 		  //  System.out.println("i == "+i);
 		    
-		    
-		    
 		    if (i!=queens.length) {
 		    
 		    	int stop=i;
 		    	
-		    queens_left=queens.length - i;	
+		   // queens_left=queens.length - i;	
 
 	    	while(i<queens.length) {
 	    	
 	    		
 	       for(int j=0 ; j<queens.length ; j++) {
 	        	
-	        	
-	            if (this.Valid_move(j, i,stop)) {
-	        	
-	                h++;
-	              
-	        	}
-	            
-	        }
+	            if (this.Valid_move(j, i,stop)) { h++; }
+
+               }
 	        
 	        i++;
 	    }
 		    }
-		    
-		   // if(queens_left>=h) 
-		    	return h;
-		    
-		    //return 0;
+		    	return h;   
 	   }
-    public  int heuristique3() {//heuristic that counts each queen's conflicts
+    
+    
+    public  int heuristique3() {//heuristic that counts each queen's conflicts within columns
     	
 		 int i=0;
-		 
 		 int h=0;
-		 
-		  
-
+	
 	    	while((i<queens.length) && (queens[i]!= -1 ) ) {
 	    	
 	    	int j=0;	
@@ -250,13 +195,11 @@ public  class Node {
 	        		
 	        		
 	            if (queens[i] == queens[j] ) {
-	        	
-	                h++;
-	                
-	               // System.out.println("conflict between line : "+i+" col:"+queens[i]+" and line "+j+" col "+queens[j]);
-	                
-	            }
+	            	
+	            	h++;
+	             }
 	        	}
+	        	
 	            j++;
 	        }
 	        

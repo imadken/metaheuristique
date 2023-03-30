@@ -28,19 +28,18 @@ public class BFS_n_reines {
 	        	
 	        	Node state = queue.poll();
 	            
-	        	//if (state.isComplete() && (state.heuristique1()==0)) {
+	        	
 	        	if (state.isComplete() && (state.isValid())) {
 	            	
-	                //solutions.add(state.queens);
+	               
 	            	solution= (state.queens);
 	            	break;
 	            } else  {
 	            	
-	            	//if((!state.isComplete()) && (state.heuristique1()==0)) {
+	            	
 	            	if((!state.isComplete())) {
 	                List<Node> nextNodes = state.get_children();
 	                for (Node nextNode : nextNodes) {
-	                	
 	                	
 	                	BFS_n_reines.nbr_nodes_gen++;
 	                    queue.offer(nextNode);

@@ -318,7 +318,8 @@ public class ChessBoardGUI extends JFrame {
     public static void main(String[] args) {
         //new ChessBoardGUI();
     	
-    	int[] t= {-1,-1,-1,-1,-1,-1,-1,-1};
+    	//int[] t= {-1,-1,-1,-1,-1,-1,-1,-1};
+    	int[] t= {0, 4, 7, 5, 2, 6, -1,-1};
         new ChessBoardGUI(8,0,0,0,t);
     }
 }

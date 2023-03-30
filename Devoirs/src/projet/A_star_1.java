@@ -35,17 +35,14 @@ public class A_star_1 {
 	        	
 	        	Node state = queue.remove(0);
 	            
-	        	//System.out.println(state.get_f());
 	        	
-	            //if (state.isComplete() && (state.heuristique1()==0)) {
 	        	if (state.isComplete() && (state.isValid())) {
-	                //solutions.add(state.queens);
+	                
 	            	solution= (state.queens);
-	            	//System.out.println(state.get_f());
+	            	
 	            	break;
 	            } else  {
-	            	
-	            	//if((!state.isComplete()) && (state.heuristique1()==0)) {
+	       
 	            	if((!state.isComplete())) {	
 	                List<Node> nextNodes = state.get_children();
 	                

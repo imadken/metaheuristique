@@ -35,13 +35,12 @@ public class A_star_2 {
 	        	
 	        	Node state = queue.remove(0);
 	            
-	        	//System.out.println(state.get_f());
+	        	
 	        	
 	            if (state.isComplete() && (state.isValid())) {
-	        	//if (state.isComplete()) {
-	                //solutions.add(state.queens);
+	        	
 	            	solution= (state.queens);
-	            	//System.out.println(state.get_f());
+	            	
 	            	break;
 	            } else  {
 	            	

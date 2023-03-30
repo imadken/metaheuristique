@@ -7,20 +7,18 @@ package projet;
 import java.util.*;
 
 public class DFS_n_reines {
-
 	static int nbr_nodes_gen;//generes
 	static int nbr_nodes_exp;//explores
 	
     public static int[] solve(int n) {
-    	
-    	
+
     	DFS_n_reines.nbr_nodes_gen=0;//generes
     	DFS_n_reines.nbr_nodes_exp=0;//explores
     	
         int[] solutions = new int[n];
         
         Stack<Node> stack = new Stack<Node>();
-       // Queue<Node> queue = new LinkedList<>();
+       
         
         stack.push(new Node(n,0));
 
@@ -31,13 +29,11 @@ public class DFS_n_reines {
         	Node state = stack.pop();
             
            if (state.isComplete() && (state.isValid())) {
-        	//if (state.isComplete() &&) {
-                //solutions.add(state.queens);
+        	
             	solutions= (state.queens);
             	break;
             } else  {
-            	
-            	//if((!state.isComplete()) && (state.heuristique1()==0)) {
+
             	if((!state.isComplete())) {
             		
                 List<Node> nextNodes = state.get_children();
@@ -56,7 +52,7 @@ public class DFS_n_reines {
         System.out.println("nombre des noeuds explores: " +DFS_n_reines.nbr_nodes_exp+"\n");
 
         return solutions;
-    
+
    }
     
     /*public static List<int[]> solve(int n) {
