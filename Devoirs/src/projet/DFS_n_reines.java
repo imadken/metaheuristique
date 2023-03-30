@@ -8,12 +8,14 @@ import java.util.*;
 
 public class DFS_n_reines {
 
-
+	static int nbr_nodes_gen;//generes
+	static int nbr_nodes_exp;//explores
+	
     public static int[] solve(int n) {
     	
     	
-    	int nbr_nodes_gen=0;//generes
-    	int nbr_nodes_exp=0;//explores
+    	DFS_n_reines.nbr_nodes_gen=0;//generes
+    	DFS_n_reines.nbr_nodes_exp=0;//explores
     	
         int[] solutions = new int[n];
         
@@ -24,7 +26,7 @@ public class DFS_n_reines {
 
         while (!stack.isEmpty()) {
         	
-        	nbr_nodes_exp++;
+        	DFS_n_reines.nbr_nodes_exp++;
         	
         	Node state = stack.pop();
             
@@ -42,7 +44,7 @@ public class DFS_n_reines {
                 
                 for (Node nextNode : nextNodes) {
                 	
-                	nbr_nodes_gen++;
+                	DFS_n_reines.nbr_nodes_gen++;
                 	
                 	stack.push(nextNode);
                 }
@@ -50,8 +52,8 @@ public class DFS_n_reines {
             }
         }
         
-        System.out.println("nombre des noeuds generes: " +nbr_nodes_gen); 
-        System.out.println("nombre des noeuds explores: " +nbr_nodes_exp+"\n");
+        System.out.println("nombre des noeuds generes: " +DFS_n_reines.nbr_nodes_gen); 
+        System.out.println("nombre des noeuds explores: " +DFS_n_reines.nbr_nodes_exp+"\n");
 
         return solutions;
     
@@ -80,7 +82,7 @@ public class DFS_n_reines {
     }*/
 
     public static void main(String[] args) {
-        int n = 6;
+       int n = 6;
         long start,end;
         System.out.println("dfs\n"); 
         
@@ -90,13 +92,30 @@ public class DFS_n_reines {
         
         end =System.currentTimeMillis();
         
-        System.out.println("temps de calcul " +(end-start)/1000F+" (s)\n"); 
+        System.out.println("temps de calcul " +(end-start)+" (ms)\n"); 
         
         
         //for (int[] solution : solutions) {
             System.out.println("solution:  "+Arrays.toString(solution));
         //}
        // System.out.println("Total solutions: " + solutions.size());
+            
+    	/*long start,end;    
+       for (int i = 4; i<=6 ;i++) {
+    	   System.out.println(i);
+    	   start =System.currentTimeMillis();
+           
+    	   System.out.println("solution:  "+Arrays.toString(DFS_n_reines.solve(i)));
+           
+           end =System.currentTimeMillis();
+           
+           System.out.println("temps de calcul " +(end-start)+" (ms)\n"); 
+           
+           
+           //for (int[] solution : solutions) {
+          start=0;
+          end=0;
+       }*/     
             
            
            

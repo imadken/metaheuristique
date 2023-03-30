@@ -7,13 +7,14 @@ import java.util.Queue;
 
 public class BFS_n_reines {
 	
-	
+	static int nbr_nodes_gen=0;
+	static int nbr_nodes_exp=0;
 	
 	 public static int[] solve(int n) {
 	    	
 	    	
-	    	int nbr_nodes_gen=0;
-	    	int nbr_nodes_exp=0;
+		 BFS_n_reines.nbr_nodes_gen=0;
+		 BFS_n_reines.nbr_nodes_exp=0;
 	    	
 	        int[] solution = new int[n];
 	        
@@ -23,7 +24,7 @@ public class BFS_n_reines {
 
 	        while (!queue.isEmpty()) {
 	        	
-	        	nbr_nodes_exp++;
+	        	BFS_n_reines.nbr_nodes_exp++;
 	        	
 	        	Node state = queue.poll();
 	            
@@ -41,7 +42,7 @@ public class BFS_n_reines {
 	                for (Node nextNode : nextNodes) {
 	                	
 	                	
-	                	nbr_nodes_gen++;
+	                	BFS_n_reines.nbr_nodes_gen++;
 	                    queue.offer(nextNode);
 	                    
 	                }
@@ -49,15 +50,15 @@ public class BFS_n_reines {
 	            }
 	        }
 	        
-	        System.out.println("nombre des noeuds generes: " +nbr_nodes_gen); 
-	        System.out.println("nombre des noeuds explores: " +nbr_nodes_exp+"\n");
+	        System.out.println("nombre des noeuds generes: " +BFS_n_reines.nbr_nodes_gen); 
+	        System.out.println("nombre des noeuds explores: " +BFS_n_reines.nbr_nodes_exp+"\n");
 
 	        return solution;
 	    
 	   }
 
 	    public static void main(String[] args) {
-	        int n = 6;
+	        int n = 9;
 	        long start,end;
 	        
 	        System.out.println("bfs\n"); 
@@ -67,7 +68,7 @@ public class BFS_n_reines {
 	        
 	        end =System.currentTimeMillis();
 	        
-	        System.out.println("temps de calcul " +(end-start)/1000F+" (s)\n"); 
+	        System.out.println("temps de calcul " +(end-start)+" (ms)\n"); 
 	        
 	        
 	        //for (int[] solution : solutions) {

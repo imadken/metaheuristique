@@ -14,11 +14,14 @@ import java.util.List;
 
 public class A_star_2 {
 	
+	static int nbr_nodes_gen=0;
+	static int nbr_nodes_exp=0;
+	
 	 public static int[] solve(int n) {
 	    	
 	    	
-	    	int nbr_nodes_gen=0;
-	    	int nbr_nodes_exp=0;
+		 A_star_2.nbr_nodes_gen=0;
+		 A_star_2.nbr_nodes_exp=0;
 	    	
 	        int[] solution = new int[n];
 	        
@@ -28,7 +31,7 @@ public class A_star_2 {
 
 	        while (!queue.isEmpty()) {
 	        	
-	        	nbr_nodes_exp++;
+	        	A_star_2.nbr_nodes_exp++;
 	        	
 	        	Node state = queue.remove(0);
 	            
@@ -47,7 +50,7 @@ public class A_star_2 {
 	                List<Node> nextNodes = state.get_children();
 	                for (Node nextNode : nextNodes) {
 	                	
-	                	nbr_nodes_gen++;
+	                	A_star_2.nbr_nodes_gen++;
 	                	
 	                	nextNode.set_f(nextNode.heuristique2()+nextNode.nextRow);//c(x)==profondeur
 	                	
@@ -59,8 +62,8 @@ public class A_star_2 {
 	          Collections.sort(queue,Node.heuristics_sort2);
 	        }
 	        
-	        System.out.println("nombre des noeuds generes: " +nbr_nodes_gen); 
-	        System.out.println("nombre des noeuds explores: " +nbr_nodes_exp+"\n");
+	        System.out.println("nombre des noeuds generes: " +A_star_2.nbr_nodes_gen); 
+	        System.out.println("nombre des noeuds explores: " +A_star_2.nbr_nodes_exp+"\n");
 
 	        return solution;
 	    
@@ -73,7 +76,7 @@ public class A_star_2 {
 	 
 
 	    public static void main(String[] args) {
-	        int n = 6;
+	        int n = 7;
 	        long start,end;
 	        
 	        System.out.println("a* 2 \n"); 
@@ -89,7 +92,7 @@ public class A_star_2 {
 	        
 	        end =System.currentTimeMillis();
 	        
-	        System.out.println("temps de calcul " +(end-start)/1000F+" (s)\n"); 
+	        System.out.println("temps de calcul " +(end-start)+" (ms)\n"); 
 	        
 	        
 	        //for (int[] solution : solutions) {

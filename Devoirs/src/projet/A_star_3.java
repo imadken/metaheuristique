@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.ArrayList;
 //import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 
 
@@ -14,21 +15,24 @@ import java.util.List;
 
 public class A_star_3 {
 	
+	static int nbr_nodes_gen=0;
+	static int nbr_nodes_exp=0;
+	
 	 public static int[] solve(int n) {
 	    	
 	    	
-	    	int nbr_nodes_gen=0;
-	    	int nbr_nodes_exp=0;
+		 A_star_3.nbr_nodes_gen=0;
+		 A_star_3.nbr_nodes_exp=0;
 	    	
 	        int[] solution = new int[n];
 	        
 	        ArrayList<Node> queue = new ArrayList<Node>();
-	        
+	       // PriorityQueue<Node> queue = new PriorityQueue<Node>( Node.heuristics_sort);
 	        queue.add(new Node(n,0));
 
 	        while (!queue.isEmpty()) {
 	        	
-	        	nbr_nodes_exp++;
+	        	A_star_3.nbr_nodes_exp++;
 	        	
 	        	Node state = queue.remove(0);
 	            
@@ -47,7 +51,7 @@ public class A_star_3 {
 	                List<Node> nextNodes = state.get_children();
 	                for (Node nextNode : nextNodes) {
 	                	
-	                	nbr_nodes_gen++;
+	                	A_star_3.nbr_nodes_gen++;
 	                	
 	                	nextNode.set_f(nextNode.heuristique3());
 	                	
@@ -59,8 +63,8 @@ public class A_star_3 {
 	          Collections.sort(queue,Node.heuristics_sort);
 	        }
 	        
-	        System.out.println("nombre des noeuds generes: " +nbr_nodes_gen); 
-	        System.out.println("nombre des noeuds explores: " +nbr_nodes_exp+"\n");
+	        System.out.println("nombre des noeuds generes: " +A_star_3.nbr_nodes_gen); 
+	        System.out.println("nombre des noeuds explores: " +A_star_3.nbr_nodes_exp+"\n");
 
 	        return solution;
 	    
@@ -73,7 +77,7 @@ public class A_star_3 {
 	 
 
 	    public static void main(String[] args) {
-	        int n = 6;
+	        int n = 8;
 	        long start,end;
 	        
 	        System.out.println("a* 3 \n"); 
@@ -89,7 +93,7 @@ public class A_star_3 {
 	        
 	        end =System.currentTimeMillis();
 	        
-	        System.out.println("temps de calcul " +(end-start)/1000F+" (s)\n"); 
+	        System.out.println("temps de calcul " +(end-start)+" (ms)\n"); 
 	        
 	        
 	       
